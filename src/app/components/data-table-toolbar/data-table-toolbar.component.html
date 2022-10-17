@@ -1,1 +1,25 @@
-<p>data-table-toolbar works!</p>
+<div class="toolbar-wrapper">
+  <form class="form" nz-form [nzLayout]="'inline'" [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="form-items">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="field-time">
+            <input formControlName="timer" nz-input placeholder="Timer, ms" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="database">
+            <input formControlName="size" nz-input placeholder="Array size" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!form.valid">Get data</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
