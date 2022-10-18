@@ -1,6 +1,6 @@
 import { ColorStyle } from '../types/color-style.type';
 
-export class BaseItem {
+export class ItemChild {
   public readonly id: number | undefined;
   public readonly color: string | undefined;
 

@@ -16,10 +16,13 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-    <nz-form-item>
-      <nz-form-control>
-        <button nz-button nzType="primary" [disabled]="!form.valid">Get data</button>
-      </nz-form-control>
-    </nz-form-item>
+    <div class="form-items">
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [disabled]="!form.valid">Start</button>
+        </nz-form-control>
+      </nz-form-item>
+      <button (click)="stopJob($event)" nz-button nzType="default" [disabled]="!form.valid">Stop</button>
+    </div>
   </form>
 </div>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { BaseItem } from '../../shared/classes/base-item.class';
+import { ItemChild } from '../../shared/classes/item-child.class';
 
 @Component({
   selector: 'app-data-table-child',
@@ -8,7 +8,7 @@ import { BaseItem } from '../../shared/classes/base-item.class';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataTableChildComponent {
-  @Input() public data: BaseItem | undefined;
+  @Input() public data: ItemChild | undefined;
 
   constructor() { }
 }
