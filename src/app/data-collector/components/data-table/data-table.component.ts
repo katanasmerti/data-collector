@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { WorkerService } from '../../shared/services/worker.service';
-import { IItem } from '../../shared/interfaces/item.interface';
+import { WorkerService } from '../../../shared/services/worker.service';
+import { IItem } from '../../../shared/interfaces/item.interface';
 import { Subscription, map } from 'rxjs';
-import { Item} from '../../shared/classes/item.class';
+import { Item} from '../../../shared/classes/item.class';
 import { plainToClass } from 'class-transformer';
 
 @Component({

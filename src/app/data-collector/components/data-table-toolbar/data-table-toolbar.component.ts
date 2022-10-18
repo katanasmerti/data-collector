@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { WorkerService } from '../../shared/services/worker.service';
-import { BASE_ARRAY_SIZE } from '../../shared/consts/base-array-size.const';
+import { AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { WorkerService } from '../../../shared/services/worker.service';
+import { BASE_ARRAY_SIZE } from '../../../shared/consts/base-array-size.const';
 import { interval, Observable, Subscription } from 'rxjs';
-import { BASE_TIMER } from '../../shared/consts/base-timer.const';
+import { BASE_TIMER } from '../../../shared/consts/base-timer.const';
 
 @Component({
   selector: 'app-data-table-toolbar',
@@ -11,6 +11,7 @@ import { BASE_TIMER } from '../../shared/consts/base-timer.const';
   styleUrls: ['./data-table-toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class DataTableToolbarComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public isStartBtnDisabled: boolean = true;
@@ -31,10 +32,10 @@ export class DataTableToolbarComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private workerService: WorkerService) {
     this.form = this.fb.group({
-      timer: [BASE_TIMER],
-      size: [10],
+      timer: [BASE_TIMER, Validators.required],
+      size: [BASE_ARRAY_SIZE, Validators.required],
       id: [null],
-      ids: [{ value: [], disabled: true }],
+      ids: [[]],
     });
   }
 
@@ -54,7 +55,7 @@ export class DataTableToolbarComponent implements OnInit, OnDestroy {
     this.subscribeOnStream();
   }
 
-  public stopJob($event: MouseEvent): void {
+  public stopStream($event: MouseEvent): void {
     $event.preventDefault();
     this.isStartBtnDisabled = false;
     this.subscription$.unsubscribe();
@@ -63,11 +64,21 @@ export class DataTableToolbarComponent implements OnInit, OnDestroy {
   public addId($event: number): void {
     if ($event) {
       const ids = this.idsFormControl?.getRawValue();
-      if (!ids.includes($event)) {
-        this.form.patchValue({ ids: [...ids, $event] });
+      if (!ids.includes(` ${$event}`)) {
+        this.form.patchValue({ ids: [...ids, ` ${$event}`] });
       }
     }
     this.idFormControl?.reset();
+  }
+
+  public resetForm($event: MouseEvent): void {
+    $event.preventDefault();
+    this.form.patchValue({
+      timer: BASE_TIMER,
+      size: BASE_ARRAY_SIZE,
+      id: null,
+      ids: [],
+    });
   }
 
   private subscribeOnStream(): void {

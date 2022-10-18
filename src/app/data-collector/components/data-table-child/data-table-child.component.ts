@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ItemChild } from '../../shared/classes/item-child.class';
+import { ItemChild } from '../../../shared/classes/item-child.class';
 
 @Component({
   selector: 'app-data-table-child',

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataTableComponent } from './data-table/data-table.component';
-import { DataTableToolbarComponent } from './data-table-toolbar/data-table-toolbar.component';
-import { DataTableChildComponent } from './data-table-child/data-table-child.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { DataTableToolbarComponent } from './components/data-table-toolbar/data-table-toolbar.component';
+import { DataTableChildComponent } from './components/data-table-child/data-table-child.component';
 import { DataCollectorRoutingModule } from './data-collector-routing.module';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';

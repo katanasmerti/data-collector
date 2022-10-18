@@ -1,7 +1,7 @@
 import { IItem } from '../interfaces/item.interface';
 
 export function generateItems(amount: number): IItem[] {
-  // Worker's function can't include exported helpers, that is why functions declared here
+  // Worker's function can't include exported helpers, that is why function declared here
   function getRandomColor(): string {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -10,7 +10,7 @@ export function generateItems(amount: number): IItem[] {
     }
     return color;
   }
-  // Worker's function can't include exported helpers, that is why functions declared here
+  // Worker's function can't include exported helpers, that is why function declared here
   function getRandomFloat(): number {
     const str = (Math.random() * (10 - 1) + 1).toFixed(10);
     return parseFloat(str);
