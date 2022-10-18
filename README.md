@@ -4,6 +4,12 @@ Using Angular 14 and Bootstrap 5.2.
 
 ## Development
 
+Install all dependencies.
+
+```
+npm i
+```
+
 Start serving the application to `http://localhost:4000`.
 
 ```
