@@ -1,10 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import { DataService } from '../../shared/services/data.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { WorkerService } from '../../shared/services/worker.service';
 import { IItem } from '../../shared/interfaces/item.interface';
 import { Subscription, map } from 'rxjs';
 import { Item} from '../../shared/classes/item.class';
 import { plainToClass } from 'class-transformer';
-import { BASE_ARRAY_SIZE } from '../../shared/consts/base-array-size.const';
 
 @Component({
   selector: 'app-data-table',
@@ -18,10 +17,10 @@ export class DataTableComponent implements OnInit, OnDestroy {
 
   private subscription$ = new Subscription();
 
-  constructor(private dataService: DataService, private cdr: ChangeDetectorRef) { }
+  constructor(private workerService: WorkerService, private cdr: ChangeDetectorRef) { }
 
   public ngOnInit(): void {
-    this.subscription$.add(this.dataService.workerData$
+    this.subscription$.add(this.workerService.workerData$
       .pipe(map((data: IItem[]) => data.slice(-10)))
       .subscribe((data: IItem[]) => {
         this.pageSize = data.length;
@@ -33,13 +32,13 @@ export class DataTableComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
       }
     ));
-    this.subscription$.add(this.dataService.stream$.subscribe(() => {
-      this.dataService.generateItems();
-    }));
   }
 
   public ngOnDestroy(): void {
     this.subscription$.unsubscribe();
   }
 
+  public trackByFn(index: number, item: Item): number {
+    return item?.id as number;
+  }
 }

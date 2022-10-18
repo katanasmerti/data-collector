@@ -1,28 +1,46 @@
 <div class="toolbar-wrapper">
   <form class="form" nz-form [nzLayout]="'inline'" [formGroup]="form" (ngSubmit)="submitForm()">
     <div class="form-items">
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your username!">
+      <nz-form-item nz-tooltip nzTooltipTitle="Timer, ms">
+        <nz-form-control>
           <nz-input-group nzPrefixIcon="field-time">
             <input formControlName="timer" nz-input placeholder="Timer, ms" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your Password!">
+      <nz-form-item nz-tooltip nzTooltipTitle="Array size">
+        <nz-form-control>
           <nz-input-group nzPrefixIcon="database">
             <input formControlName="size" nz-input placeholder="Array size" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+      <nz-input-group
+        nz-tooltip
+        nzTooltipTitle="Press [enter] to add new id"
+        nzPrefixIcon="appstore-add"
+        class="add-id">
+        <input
+          formControlName="id"
+          type="number"
+          nz-input
+          placeholder="add new id"
+          (keydown.enter)="addId(idFormControl?.value)" />
+      </nz-input-group>
     </div>
     <div class="form-items">
+      <input
+        nz-tooltip nzTooltipTitle="Additional ids"
+        formControlName="ids"
+        class="ids"
+        nz-input
+        placeholder="additional ids"/>
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary" [disabled]="!form.valid">Start</button>
+          <button nz-button nzType="primary" [disabled]="!form.valid || isStartBtnDisabled">Start stream</button>
         </nz-form-control>
       </nz-form-item>
-      <button (click)="stopJob($event)" nz-button nzType="default" [disabled]="!form.valid">Stop</button>
+      <button (click)="stopJob($event)" nz-button nzType="default" [disabled]="!isStartBtnDisabled">Stop stream</button>
     </div>
   </form>
 </div>
